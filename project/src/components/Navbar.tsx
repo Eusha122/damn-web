@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Users, Crown } from 'lucide-react';
+import { Menu, X, Users } from 'lucide-react';
 import VisitorModal from './VisitorModal';
-import ChessGame from './ChessGame';
 
 interface NavbarProps {
   visitors: Array<{name: string, relation: string}>;
@@ -14,7 +13,6 @@ const Navbar: React.FC<NavbarProps> = ({ visitors, onAddVisitor }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showVisitorModal, setShowVisitorModal] = useState(false);
   const [showVisitors, setShowVisitors] = useState(false);
-  const [showChessGame, setShowChessGame] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -80,19 +78,6 @@ const Navbar: React.FC<NavbarProps> = ({ visitors, onAddVisitor }) => {
                   {item.name}
                 </motion.button>
               ))}
-              
-              {/* Play with Me Button */}
-              <motion.button
-                onClick={() => setShowChessGame(true)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center space-x-2 px-3 xl:px-4 py-2 bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 rounded-full font-medium text-white transition-all duration-200 text-sm xl:text-base"
-                data-cursor="pointer"
-              >
-                <Crown size={16} />
-                <span className="hidden sm:inline">Play with Me</span>
-                <span className="sm:hidden">Play</span>
-              </motion.button>
               
               {/* Visitors Section */}
               <div className="relative">
@@ -182,18 +167,6 @@ const Navbar: React.FC<NavbarProps> = ({ visitors, onAddVisitor }) => {
                 ))}
                 <motion.button
                   onClick={() => {
-                    setShowChessGame(true);
-                    setIsOpen(false);
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center space-x-2 text-gray-300 hover:text-white transition-colors duration-200 py-2"
-                  data-cursor="pointer"
-                >
-                  <Crown size={18} />
-                  <span>Play with Me</span>
-                </motion.button>
-                <motion.button
-                  onClick={() => {
                     setShowVisitorModal(true);
                     setIsOpen(false);
                   }}
@@ -214,11 +187,6 @@ const Navbar: React.FC<NavbarProps> = ({ visitors, onAddVisitor }) => {
         isOpen={showVisitorModal}
         onClose={() => setShowVisitorModal(false)}
         onSubmit={onAddVisitor}
-      />
-
-      <ChessGame
-        isOpen={showChessGame}
-        onClose={() => setShowChessGame(false)}
       />
     </>
   );
