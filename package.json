@@ -4,10 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npx vite",
-    "build": "tsc && npx vite build",
-    "lint": "eslint .",
-    "preview": "npx vite preview"
+    "dev": "cd project && npx vite",
+    "build": "cd project && tsc && npx vite build",
+    "lint": "cd project && eslint .",
+    "preview": "cd project && npx vite preview"
   },
   "dependencies": {
     "@react-three/drei": "^9.95.0",
